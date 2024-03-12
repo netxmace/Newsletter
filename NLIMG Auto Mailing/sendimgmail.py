@@ -5,7 +5,7 @@ from email.mime.image import MIMEImage
 
 efrom="thenetxnewsletter@gmail.com"
 passw="aoihclfynjgbhpfq"
-msubj="NewsLetter"
+msubj="NewsLetter | NetX MACE"
 tolist="testcsvmail.csv"
 newsimg="newsletterimg.jpg"
 
@@ -13,7 +13,7 @@ with open(tolist) as file:
     reader=csv.reader(file)
     next(reader)
     bcc=[]
-    for name,email in reader:
+    for email in reader:
         bcc.append(email)
 print(bcc)
 
@@ -53,6 +53,6 @@ with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
     
         
         
-    mailmsg=msgroot.as_string().format(name='Subscriber')
+    mailmsg=msgroot.as_string()
     server.sendmail(efrom, bcc, mailmsg)
     print("Mail sent to All")
